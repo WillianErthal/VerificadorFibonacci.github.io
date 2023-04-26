@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemplo de Faturamento</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>Relatório de Faturamento</h1>
+  <button id="calcular">Calcular Faturamento</button>
+  <div id="resultado" style="display: none;">
+    <p>Menor valor de faturamento: <span id="menorValor"></span></p>
+    <p>Maior valor de faturamento: <span id="maiorValor"></span></p>
+    <p>Dias com faturamento acima da média mensal: <span id="diasAcimaDaMedia"></span></p>
+  </div>
+
+  <script>
+    document.getElementById('calcular').addEventListener('click', async () => {
+      const response = await fetch('faturamento.json');
+      const faturamentoMensal = await response.json();
+
+      function calcularFaturamento(faturamentoMensal) {
+        let menorValor = Infinity;
+        let maiorValor = -Infinity;
+        let totalFaturamento = 0;
+        let totalDiasComFaturamento = 0;
+        let diasAcimaDaMedia = 0;
+
+        faturamentoMensal.forEach((dia) => {
+          if (dia.faturamento !== null) {
+            totalFaturamento += dia.faturamento;
+            totalDiasComFaturamento++;
+
+            if (dia.faturamento < menorValor) {
+              menorValor = dia.faturamento;
+            }
+
+            if (dia.faturamento > maiorValor) {
+              maiorValor = dia.faturamento;
+            }
+          }
+        });
+
+        const mediaMensal = totalFaturamento / totalDiasComFaturamento;
+
+        faturamentoMensal.forEach((dia) => {
+          if (dia.faturamento !== null && dia.faturamento > mediaMensal) {
+            diasAcimaDaMedia++;
+          }
+        });
+
+        return {
+          menorValor,
+          maiorValor,
+          diasAcimaDaMedia,
+        };
+      }
+
+      const resultado = calcularFaturamento(faturamentoMensal);
+      document.getElementById('menorValor').textContent = resultado.menorValor.toFixed(2);
+      document.getElementById('maiorValor').textContent = resultado.maiorValor.toFixed(2);
+      document.getElementById('diasAcimaDaMedia').textContent = resultado.diasAcimaDaMedia;
+      document.getElementById('resultado').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
