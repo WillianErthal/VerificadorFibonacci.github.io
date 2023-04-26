@@ -5,54 +5,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Índice</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .buttons-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
 </head>
 
 <body>
     <div class="buttons-container">
-        <button id="fatMensalBtn">FatMensal</button>
-        <button id="fibonacciBtn">Fibonacci</button>
+        <button id="fatMensalBtn">Faturamento Mensal</button>
+        <button id="fibonacciBtn">Verifica Fibonacci</button>
+        <button id="percentEstBtn">Percentual Estatal</button>
+        <button id="fraseinvertidaBtn">Inverter Frase</button>
     </div>
     <script>
         document.getElementById("fatMensalBtn").addEventListener("click", function () {
             window.location.href = "faturamentomensal.html";
         });
-
         document.getElementById("fibonacciBtn").addEventListener("click", function () {
             window.location.href = "verificadorfibonacci.html";
         });
+        document.getElementById("percentEstBtn").addEventListener("click", function () {
+            window.location.href = "percentualestatal.html";
+        });
+        document.getElementById("fraseinvertidaBtn").addEventListener("click", function () {
+            window.location.href = "inverterstring.html";
+        });
     </script>
 </body>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
 
+    .buttons-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
 </html>
