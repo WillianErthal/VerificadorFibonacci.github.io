@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador Fibonacci</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Verificador Fibonacci</h1>
+        <p>Insira um número para verificar se ele pertence à sequência de Fibonacci:</p>
+        <input type="number" id="inputNumber" min="0">
+        <button onclick="checkFibonacci()">Verificar</button>
+        <p id="result"></p>
+        <p id="sumResult"></p>
+    </div>
+
+    <script>
+        function checkFibonacci() {
+            let inputNumber = document.getElementById('inputNumber').value;
+            let result = document.getElementById('result');
+            let sumResult = document.getElementById('sumResult');
+
+            if (inputNumber === "") {
+                result.innerHTML = "Por favor, insira um número.";
+                return;
+            }
+
+            let num = parseInt(inputNumber);
+            let a = 0;
+            let b = 1;
+            let temp;
+            let sum = 0;
+            let sumString = "";
+
+            if (num === a || num === b) {
+                result.innerHTML = num + " pertence à sequência de Fibonacci.";
+                sumString = "0 + 1";
+                sumResult.innerHTML = "A soma da sequência até " + num + " é: " + sumString + " = " + (a + b);
+                return;
+            }
+
+            sum = a + b;
+            sumString = "0 + 1";
+            while (b <= num) {
+                temp = a + b;
+                a = b;
+                b = temp;
+                sumString += " + " + a;
+
+                if (b === num) {
+                    result.innerHTML = num + " pertence à sequência de Fibonacci.";
+                    sum += b;
+                    sumString += " + " + b;
+                    sumResult.innerHTML = "A soma da sequência até " + num + " é: " + sumString + " = " + sum;
+                    return;
+                }
+
+                sum += b;
+            }
+
+            result.innerHTML = num + " não pertence à sequência de Fibonacci.";
+            sumResult.innerHTML = "A soma da sequência até o último número antes de " + num + " é: " + sumString + " = " + sum;
+        }
+    </script>
+</body>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        width: 80%;
+        max-width: 400px;
+        text-align: center;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px 2px;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+</html>
