@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculadora</title>
+    <link rel="stylesheet" type="text/css" href="stylescalcavanc.css">
+</head>
+
+<body>
+    <div id="boxcalculadora">
+        <div id="calculadora">
+            <input id="display" type="text" readonly>
+            <div id="botoes">
+                <button class="numero" onclick="inserir('1')">1</button>
+                <button class="numero" onclick="inserir('2')">2</button>
+                <button class="numero" onclick="inserir('3')">3</button>
+                <button class="operador" onclick="operador('+')">+</button>
+                <button class="numero" onclick="inserir('4')">4</button>
+                <button class="numero" onclick="inserir('5')">5</button>
+                <button class="numero" onclick="inserir('6')">6</button>
+                <button class="operador" onclick="operador('-')">-</button>
+                <button class="numero" onclick="inserir('7')">7</button>
+                <button class="numero" onclick="inserir('8')">8</button>
+                <button class="numero" onclick="inserir('9')">9</button>
+                <button class="operador" onclick="operador('*')">*</button>
+                <button class="numero" onclick="inserir('0')">0</button>
+                <button class="limpar" onclick="limpar()">C</button>
+                <button class="operador" onclick="operador('/')">/</button>
+                <button class="igual" onclick="calcular()">=</button>
+            </div>
+        </div>
+    </div>
+    <script src="scriptcalcavanc.js"></script>
+</body>
+
+</html>

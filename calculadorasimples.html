@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculadora Simples</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Calculadora Simples</h2>
+        <form id="calculadora">
+            <input type="text" id="numero1" placeholder="Primeiro número">
+            <select id="operacao">
+                <option value="adicao">+</option>
+                <option value="subtracao">-</option>
+                <option value="multiplicacao">*</option>
+                <option value="divisao">/</option>
+            </select>
+            <input type="text" id="numero2" placeholder="Segundo número">
+            <button type="button" onclick="calcular()">Calcular</button>
+        </form>
+        <p id="resultado"></p>
+        <table>
+            <caption>Últimas 5 operações</caption>
+            <thead>
+                <tr>
+                    <th>Número 1</th>
+                    <th>Operação</th>
+                    <th>Número 2</th>
+                    <th>Resultado</th>
+                </tr>
+            </thead>
+            <tbody id="ultimasOperacoes">
+            </tbody>
+        </table>
+    </div>
+</body>
+<script>
+    var ultimasOperacoes = [];
+
+    function calcular() {
+        var num1 = parseFloat(document.getElementById('numero1').value);
+        var num2 = parseFloat(document.getElementById('numero2').value);
+        var operacao = document.getElementById('operacao').value;
+        var resultado;
+
+        if (isNaN(num1) || isNaN(num2)) {
+            alert("Por favor, insira dois números válidos.");
+            return;
+        }
+
+        switch (operacao) {
+            case 'adicao':
+                resultado = num1 + num2;
+                break;
+            case 'subtracao':
+                resultado = num1 - num2;
+                break;
+            case 'multiplicacao':
+                resultado = num1 * num2;
+                break;
+            case 'divisao':
+                if (num2 != 0) {
+                    resultado = num1 / num2;
+                } else {
+                    alert("Não é possível dividir por zero.");
+                    return;
+                }
+                break;
+            default:
+                alert("Operação inválida.");
+                return;
+        }
+
+        var operacaoAtual = {
+            num1: num1,
+            num2: num2,
+            operacao: operacao,
+            resultado: resultado
+        };
+
+        ultimasOperacoes.unshift(operacaoAtual);
+
+        if (ultimasOperacoes.length > 5) {
+            ultimasOperacoes.pop();
+        }
+
+        var tableRef = document.getElementById('ultimasOperacoes');
+
+        var newRow = tableRef.insertRow(0);
+
+        var num1Cell = newRow.insertCell(0);
+        var operacaoCell = newRow.insertCell(1);
+        var num2Cell = newRow.insertCell(2);
+        var resultadoCell = newRow.insertCell(3);
+
+        num1Cell.textContent = operacaoAtual.num1;
+        operacaoCell.textContent = operacaoAtual.operacao;
+        num2Cell.textContent = operacaoAtual.num2;
+        resultadoCell.textContent = operacaoAtual.resultado;
+
+        document.getElementById('resultado').innerHTML = "O resultado é: " + resultado;
+    }
+</script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        width: 80%;
+        max-width: 400px;
+        text-align: center;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px 2px;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+</html>

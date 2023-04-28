@@ -1,0 +1,50 @@
+#calculadora {
+    width: 200px;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    background: #f0f0f0;
+    align-items: center;
+}
+
+#boxcalculadora {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#display {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#botoes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    padding: 10px;
+    font-size: 18px;
+}
+
+.numero {
+    background: #e0e0e0;
+}
+
+.operador {
+    background: #a0a0a0;
+}
+
+.limpar {
+    background: #f88;
+    grid-column: span 2;
+}
+
+.igual {
+    background: #8f8;
+    grid-column: span 2;
+}
