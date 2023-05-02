@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Pizzaria Italiana</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botui/build/botui.min.css">
+    <style>
+      /* Estilos personalizados para o botão de chat */
+      .chat-button {
+        background-color: #E32636;
+        border: none;
+        color: white;
+        padding: 12px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .chat-button:hover {
+        background-color: #BD2130;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <!-- Adicione o botão de chat no cabeçalho da página -->
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><button class="chat-button">Chat</button></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <main>
+      <!-- Adicione um novo elemento HTML para conter o chatbot -->
+      <div id="my-botui-app"></div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/botui/build/botui.min.js"></script>
+    <script>
+      window.onload = function() {
+        var botui = new BotUI('my-botui-app');
+
+        // Adicione um evento de clique para o botão de chat
+        document.querySelector('.chat-button').addEventListener('click', function() {
+          botui.message.add({
+            content: 'Olá! Bem-vindo(a) à Pizzaria Italiana. Como posso ajudá-lo(a) hoje?',
+            delay: 500,
+          }).then(function() {
+            return botui.action.text({
+              action: {
+                placeholder: 'Digite sua mensagem...'
+              }
+            });
+          }).then(function(res) {
+            botui.message.add({
+              content: 'Você digitou: ' + res.value,
+              delay: 500
+            });
+          });
+        });
+      };
+    </script>
+  </body>
+</html>
